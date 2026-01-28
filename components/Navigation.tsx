@@ -58,14 +58,14 @@ export default function Navigation() {
             : 'rgba(255, 248, 240, 0)',
         }}
         transition={{ duration: 0.3 }}
-        className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-orange-200/20 lg:sticky"
+        className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-orange-200/20"
         style={{
-          paddingTop: 'max(1rem, env(safe-area-inset-top))',
+          paddingTop: 'max(0.25rem, env(safe-area-inset-top))',
           paddingLeft: 'max(1rem, env(safe-area-inset-left))',
           paddingRight: 'max(1rem, env(safe-area-inset-right))',
         }}
       >
-        <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
           {/* Logo */}
           <Link href="/" className="flex-shrink-0">
             <Image
@@ -73,7 +73,7 @@ export default function Navigation() {
               alt="Ohana Logo"
               width={220}
               height={88}
-              className="h-8 lg:h-12 w-auto max-w-[80px] lg:max-w-[120px]"
+              className="h-8 lg:h-10 w-auto max-w-[80px] lg:max-w-[110px]"
               priority
             />
           </Link>
@@ -91,7 +91,7 @@ export default function Navigation() {
             ))}
             <button
               onClick={handleWhatsAppClick}
-              className="px-6 py-2 rounded-lg btn-sunset font-medium text-sm min-h-[44px] flex items-center"
+              className="px-5 py-2 rounded-lg btn-sunset font-medium text-sm min-h-[40px] flex items-center"
             >
               Order via WhatsApp
             </button>
@@ -166,13 +166,13 @@ export default function Navigation() {
                 </button>
               </div>
 
-              {/* Menu Items */}
-              <nav className="px-6 py-4 space-y-2">
+{/* Menu Items */}
+              <nav className="px-6 py-2 space-y-0">
                 {navItems.map((item) => (
                   <button
                     key={item.label}
                     onClick={() => scrollToSection(item.href)}
-                    className="block w-full text-left text-base font-medium nav-link hover:text-orange-950 transition-colors py-3 px-2 rounded hover:bg-white/40 text-orange-900"
+                    className="block w-full text-left text-base font-medium nav-link hover:text-orange-950 transition-colors py-1 px-2 rounded hover:bg-white/40 text-orange-900"
                   >
                     {item.label}
                   </button>

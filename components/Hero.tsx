@@ -1,13 +1,25 @@
 'use client'
 
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { useRef } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import AnimatedSunset from './AnimatedSunset'
 
 export default function Hero() {
   const ref = useRef(null)
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 300], [0, 100])
+  const [isDesktop, setIsDesktop] = useState(false)
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsDesktop(window.innerWidth >= 768)
+    }
+    
+    checkScreenSize()
+    window.addEventListener('resize', checkScreenSize)
+    
+    return () => window.removeEventListener('resize', checkScreenSize)
+  }, [])
 
   return (
     <section
@@ -43,8 +55,8 @@ export default function Hero() {
         }}
       />
 
-      <motion.div
-        style={{ y }}
+<motion.div
+        style={{ y: isDesktop ? y : 0 }}
         className="relative z-10 text-center max-w-2xl px-6"
       >
         <motion.div

@@ -45,7 +45,7 @@ export default function ProductSection() {
   }
 
   return (
-    <section ref={ref} id="products" className="relative py-12 sm:py-16 md:py-24 px-4 sm:px-6 overflow-hidden">
+    <section ref={ref} id="products" className="relative py-12 sm:py-16 md:py-24 px-3 sm:px-6 overflow-hidden">
       <motion.div
         className="hidden lg:block absolute top-20 left-20 w-64 sm:w-72 lg:w-80 h-64 sm:h-72 lg:h-80 bg-gradient-to-br from-peach/20 to-transparent rounded-full blur-3xl pointer-events-none"
         animate={{
@@ -70,7 +70,7 @@ export default function ProductSection() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12"
+          className="grid grid-cols-2 gap-4 md:gap-12"
         >
           {products.map((product, idx) => (
             <motion.div
@@ -82,13 +82,13 @@ export default function ProductSection() {
               <div className="absolute inset-0 bg-gradient-to-r from-orange-300/0 to-pink-300/0 group-hover:from-orange-300/20 group-hover:to-pink-300/20 rounded-3xl blur-2xl transition-all duration-500" />
 
               <motion.div
-                className="relative backdrop-blur-md bg-white/40 rounded-3xl p-8 border border-white/20 shadow-2xl"
+                className="relative backdrop-blur-md bg-white/40 rounded-3xl p-4 sm:p-8 border border-white/20 shadow-2xl"
                 whileHover={{
                   boxShadow: '0 20px 60px rgba(255, 140, 66, 0.2)',
                 }}
               >
               <motion.div
-                  className="w-full h-48 rounded-2xl mb-6 flex items-center justify-center relative overflow-hidden"
+                  className="w-full h-40 sm:h-44 md:h-48 rounded-2xl mb-6 flex items-center justify-center relative bg-gradient-to-br from-orange-50 to-pink-50"
                   animate={{
                     y: [0, -10, 0],
                   }}
@@ -103,20 +103,19 @@ export default function ProductSection() {
                     alt="Ohana Yogurt"
                     width={200}
                     height={200}
-                    className="w-full h-full object-cover rounded-2xl"
+                    className="w-auto h-32 sm:h-36 md:h-40 object-contain rounded-xl"
                     priority
                   />
                 </motion.div>
 
 
-                <h3 className="text-xl sm:text-2xl font-bold oh-head mb-2">
+                <h3 className="text-xl sm:text-2xl font-bold oh-head mb-2 text-center">
                   Ohana Plain Yoghurt
                 </h3>
-                <p className="oh-body text-xs sm:text-sm mb-4">{product.size}</p>
-
-                <p className="text-2xl sm:text-3xl font-bold sun-highlight mb-4">
+                <p className="text-2xl sm:text-3xl font-bold sun-highlight mb-1 text-center">
                   {product.price}
                 </p>
+                <p className="oh-body text-xs sm:text-sm mb-4 text-center">{product.size}</p>
 
                 <p className="oh-body italic font-light mb-3 text-sm">
                   {product.subline}

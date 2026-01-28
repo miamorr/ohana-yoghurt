@@ -3,10 +3,21 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useScroll, useTransform } from 'framer-motion'
+import { useState, useEffect } from 'react'
 
 export default function CeritaPage() {
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 500], [0, 150])
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640) // sm breakpoint
+    }
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const storyText = `Ohana berarti keluarga — tempat di mana cinta abadi berkembang. Kami tidak menghasilkan yoghurt dalam jumlah besar. Kami membuat setiap batch dengan tangan, dengan hati, dan dengan janji untuk memberikan yang terbaik bagi keluarga Anda.
 
@@ -24,18 +35,32 @@ Ohana bukan sekadar yoghurt. Ini adalah momen. Ini adalah kebersamaan. Ini adala
       >
         <div className="absolute inset-0 bg-gradient-to-br from-orange-300/20 via-pink-300/20 to-transparent" />
 
-        <div className="max-w-3xl mx-auto relative z-10 text-center">
+        <div className="max-w-3xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-6xl md:text-7xl font-bold oh-head mb-6 sun-haze">
-              Cerita <span className="sun-highlight">Ohana</span>
-            </h1>
-            <p className="text-xl oh-body font-light sun-haze">
-              Keluarga, cinta, dan kehangatan dalam setiap sendok.
-            </p>
+            <>
+              <style jsx>{`
+                @media (max-width: 639px) {
+                  .mobile-center-title {
+                    text-align: center !important;
+                  }
+                }
+                @media (min-width: 640px) {
+                  .mobile-center-title {
+                    text-align: left !important;
+                  }
+                }
+              `}</style>
+              <h1 className="text-6xl md:text-7xl font-bold oh-head mb-6 sun-haze mobile-center-title">
+                Cerita <span className="sun-highlight">Ohana</span>
+              </h1>
+              <p className="text-xl oh-body font-light sun-haze mobile-center-title">
+                Keluarga, cinta, dan kehangatan dalam setiap sendok.
+              </p>
+            </>
           </motion.div>
         </div>
       </motion.section>
@@ -54,6 +79,7 @@ Ohana bukan sekadar yoghurt. Ini adalah momen. Ini adalah kebersamaan. Ini adala
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: idx * 0.1 }}
+                className="text-center md:text-left"
               >
                 {paragraph}
               </motion.p>

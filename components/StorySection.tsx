@@ -38,7 +38,7 @@ Ohana bukan sekadar yoghurt. Ini adalah momen. Ini adalah kebersamaan. Ini adala
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold oh-head mb-6 sm:mb-8 sun-haze">Cerita Ohana</h2>
+          <h2 className="text-center sm:text-left text-3xl sm:text-4xl md:text-5xl font-bold oh-head mb-6 sm:mb-8 sun-haze">Cerita Ohana</h2>
 
           <div className="space-y-4 sm:space-y-6 text-base sm:text-lg oh-body font-light leading-normal sm:leading-relaxed sun-haze">
             {storyText.split('\n\n').map((paragraph, idx) => (
