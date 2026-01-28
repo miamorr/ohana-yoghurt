@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -11,6 +11,14 @@ export const metadata: Metadata = {
   },
 }
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  viewportFit: 'cover',
+  maximumScale: 5,
+  userScalable: true,
+}
+
 export default function RootLayout({
   children,
 }: {
@@ -18,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="id">
-      <body className="bg-cream overflow-x-hidden">
+      <body className="bg-cream">
         {children}
       </body>
     </html>

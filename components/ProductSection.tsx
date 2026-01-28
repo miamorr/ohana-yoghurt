@@ -45,9 +45,9 @@ export default function ProductSection() {
   }
 
   return (
-    <section ref={ref} id="products" className="relative py-24 px-6 overflow-hidden">
+    <section ref={ref} id="products" className="relative py-12 sm:py-16 md:py-24 px-4 sm:px-6 overflow-hidden">
       <motion.div
-        className="absolute top-20 left-20 w-80 h-80 bg-gradient-to-br from-peach/20 to-transparent rounded-full blur-3xl"
+        className="hidden lg:block absolute top-20 left-20 w-64 sm:w-72 lg:w-80 h-64 sm:h-72 lg:h-80 bg-gradient-to-br from-peach/20 to-transparent rounded-full blur-3xl pointer-events-none"
         animate={{
           y: isInView ? [0, 40, 0] : 0,
         }}
@@ -61,7 +61,7 @@ export default function ProductSection() {
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-          className="text-5xl font-bold text-center oh-head mb-16 sun-haze"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-center oh-head mb-12 sm:mb-16 sun-haze"
         >
           Produk Kami
         </motion.h2>
@@ -70,7 +70,7 @@ export default function ProductSection() {
           variants={containerVariants}
           initial="hidden"
           animate={isInView ? 'visible' : 'hidden'}
-          className="grid grid-cols-1 md:grid-cols-2 gap-12"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12"
         >
           {products.map((product, idx) => (
             <motion.div
@@ -109,20 +109,20 @@ export default function ProductSection() {
                 </motion.div>
 
 
-                <h3 className="text-2xl font-bold oh-head mb-2">
+                <h3 className="text-xl sm:text-2xl font-bold oh-head mb-2">
                   Ohana Plain Yoghurt
                 </h3>
-                <p className="oh-body text-sm mb-4">{product.size}</p>
+                <p className="oh-body text-xs sm:text-sm mb-4">{product.size}</p>
 
-                <p className="text-3xl font-bold sun-highlight mb-4">
+                <p className="text-2xl sm:text-3xl font-bold sun-highlight mb-4">
                   {product.price}
                 </p>
 
-                <p className="oh-body italic font-light mb-3">
+                <p className="oh-body italic font-light mb-3 text-sm">
                   {product.subline}
                 </p>
 
-                <p className="oh-body text-sm leading-relaxed mb-6">
+                <p className="oh-body text-xs sm:text-sm leading-relaxed mb-6">
                   {product.description}
                 </p>
 
@@ -132,7 +132,7 @@ export default function ProductSection() {
                   }
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="w-full py-3 rounded-full btn-sunset font-bold shadow-lg"
+                  className="w-full py-3 rounded-full btn-sunset font-bold shadow-lg min-h-[44px]"
                 >
                   Pesan Sekarang
                 </motion.button>

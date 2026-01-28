@@ -18,10 +18,10 @@ Ohana bukan sekadar yoghurt. Ini adalah momen. Ini adalah kebersamaan. Ini adala
     <section
       ref={ref}
       id="cerita"
-      className="relative py-24 px-6 overflow-hidden"
+      className="relative py-12 sm:py-16 md:py-24 px-4 sm:px-6 overflow-hidden"
     >
       <motion.div
-        className="absolute -top-40 right-0 w-96 h-96 bg-gradient-to-bl from-pink-300/30 to-transparent rounded-full blur-3xl"
+        className="hidden lg:block absolute -top-40 right-0 w-64 sm:w-80 lg:w-96 h-64 sm:h-80 lg:h-96 bg-gradient-to-bl from-pink-300/30 to-transparent rounded-full blur-3xl pointer-events-none"
         animate={{
           y: isInView ? [0, 30, 0] : 0,
         }}
@@ -32,15 +32,15 @@ Ohana bukan sekadar yoghurt. Ini adalah momen. Ini adalah kebersamaan. Ini adala
         }}
       />
 
-      <div className="max-w-6xl mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <div className="max-w-6xl mx-auto relative z-10 grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12 items-center">
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-5xl font-bold oh-head mb-8 sun-haze">Cerita Ohana</h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold oh-head mb-6 sm:mb-8 sun-haze">Cerita Ohana</h2>
 
-          <div className="space-y-6 text-lg oh-body font-light leading-relaxed sun-haze">
+          <div className="space-y-4 sm:space-y-6 text-base sm:text-lg oh-body font-light leading-normal sm:leading-relaxed sun-haze">
             {storyText.split('\n\n').map((paragraph, idx) => (
               <motion.p
                 key={idx}

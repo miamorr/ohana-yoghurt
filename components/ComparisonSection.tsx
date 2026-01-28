@@ -8,6 +8,7 @@ export default function ComparisonSection() {
   const isInView = useInView(ref, { once: false, amount: 0.3 })
 
   const comparisonData = [
+    { feature: '', ohana: 'Ohana Yogurt', market: 'Produk Pasaran', isHeader: true },
     { feature: 'Homemade', ohana: '✅ Ya', market: '❌ Tidak' },
     { feature: 'Tanpa Pengawet', ohana: '✅ Murni', market: '❌ Banyak Aditif' },
     {
@@ -37,9 +38,9 @@ export default function ComparisonSection() {
   }
 
   return (
-    <section ref={ref} id="mengapa-ohana" className="relative py-24 px-6 overflow-hidden">
+    <section ref={ref} id="mengapa-ohana" className="relative py-12 sm:py-16 md:py-24 px-4 sm:px-6 overflow-hidden">
       <motion.div
-        className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-tl from-purple-300/30 to-transparent rounded-full blur-3xl"
+        className="hidden lg:block absolute bottom-0 right-0 w-64 sm:w-80 lg:w-96 h-64 sm:h-80 lg:h-96 bg-gradient-to-tl from-purple-300/30 to-transparent rounded-full blur-3xl pointer-events-none"
         animate={{
           x: isInView ? [0, 50, 0] : 0,
         }}
@@ -53,36 +54,53 @@ export default function ComparisonSection() {
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: -20 }}
-          className="text-5xl font-bold text-center oh-head mb-16 sun-haze"
+          className="text-3xl sm:text-4xl md:text-5xl font-bold text-center oh-head mb-12 sm:mb-16 sun-haze"
         >
           Mengapa Ohana?
         </motion.h2>
 
-        <div className="space-y-3">
-          {comparisonData.map((row, idx) => (
+        <div className="space-y-2 sm:space-y-3">
+          {comparisonData.map((row, idx) => {
+            return (
             <motion.div
               key={idx}
-              variants={rowVariants}
-              initial="hidden"
-              animate={isInView ? 'visible' : 'hidden'}
-              transition={{ delay: idx * 0.1 }}
-              className="grid grid-cols-3 gap-4 p-6 rounded-2xl backdrop-blur-md bg-[rgba(255,250,240,0.45)] border border-[rgba(255,250,240,0.12)] hover:bg-[rgba(255,250,240,0.6)] transition-all duration-300"
+              variants={row.isHeader ? undefined : rowVariants}
+              initial={row.isHeader ? undefined : "hidden"}
+              animate={row.isHeader ? undefined : (isInView ? 'visible' : 'hidden')}
+              transition={row.isHeader ? undefined : { delay: idx * 0.1 }}
+              className={`grid grid-cols-3 gap-0 p-3 sm:p-6 rounded-2xl transition-all duration-300 ${
+                row.isHeader
+                  ? 'bg-gradient-to-r from-orange-300/25 to-pink-300/25 font-bold'
+                  : 'backdrop-blur-md bg-[rgba(255,250,240,0.45)] border border-[rgba(255,250,240,0.12)] hover:bg-[rgba(255,250,240,0.6)]'
+              }`}
             >
-                <div className="font-semibold oh-head">{row.feature}</div>
+              {/* Feature name */}
+              <div className={`font-semibold text-xs sm:text-base oh-head`}>
+                {row.feature}
+              </div>
+              
+              {/* Column 1: Ohana Yogurt */}
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="text-center font-medium text-green-700"
+                whileHover={!row.isHeader ? { scale: 1.05 } : undefined}
+                className={`text-center font-medium text-xs sm:text-sm ${
+                  row.isHeader ? 'oh-head sun-haze' : 'text-green-700'
+                }`}
               >
                 {row.ohana}
               </motion.div>
+              
+              {/* Column 2: Produk Pasaran */}
               <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="text-center font-medium oh-body"
+                whileHover={!row.isHeader ? { scale: 1.05 } : undefined}
+                className={`text-center font-medium text-xs sm:text-sm ${
+                  row.isHeader ? 'oh-head sun-haze' : 'oh-body'
+                }`}
               >
                 {row.market}
               </motion.div>
             </motion.div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>

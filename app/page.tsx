@@ -14,11 +14,6 @@ export default function Home() {
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      direction: 'vertical' as const,
-      gestureDirection: 'vertical' as const,
-      smooth: true,
-      smoothTouch: false,
-      touchMultiplier: 2,
     })
 
     function raf(time: number) {
@@ -32,13 +27,15 @@ export default function Home() {
   }, [])
 
   return (
-    <main>
+    <main className="overflow-x-hidden">
       <Navigation />
-      <Hero />
-      <StorySection />
-      <ProductSection />
-      <ComparisonSection />
-      <ClosingSection />
+      <div className="pt-[72px] lg:pt-0">
+        <Hero />
+        <StorySection />
+        <ProductSection />
+        <ComparisonSection />
+        <ClosingSection />
+      </div>
     </main>
   )
 }

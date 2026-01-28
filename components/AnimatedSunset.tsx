@@ -80,8 +80,9 @@ export default function AnimatedSunset() {
   return (
     <motion.canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-screen pointer-events-none z-0"
+      className="fixed top-0 left-0 w-full pointer-events-none z-0"
       style={{
+        height: '100dvh',
         opacity: useTransform(scrollProgress, [0, 1], [1, 0.5]),
       }}
     />
