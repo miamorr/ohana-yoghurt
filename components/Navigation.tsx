@@ -30,7 +30,7 @@ export default function Navigation() {
 
   const navItems = [
     { label: 'Beranda', href: '#home' },
-    { label: 'Cerita Ohana', href: '#cerita' },
+    { label: 'Cerita Ohana', href: '#story' },
     { label: 'Produk', href: '#products' },
     { label: 'Mengapa Ohana?', href: '#mengapa-ohana' },
   ]

@@ -17,7 +17,7 @@ Ohana bukan sekadar yoghurt. Ini adalah momen. Ini adalah kebersamaan. Ini adala
   return (
     <section
       ref={ref}
-      id="cerita"
+      id="story"
       className="relative py-12 sm:py-16 md:py-24 px-4 sm:px-6 overflow-hidden"
     >
       <motion.div
