@@ -46,7 +46,7 @@ export default function ClosingSection() {
 
   const closingText = `Saat matahari terbenam dan langit berubah warna, saat angin membawa kehangatan, saat keluarga berkumpul di sekitar meja — itulah saatnya Ohana. Rasa yoghurt yang lembut, creamy, dan dibuat dengan cinta. Rasa yang membawa Anda kembali ke rumah, setiap kali.`
 
-  const closingTitle = ['Ohana adalah cinta.', 'Ohana adalah keluarga.', 'Ohana adalah rumah.']
+  const closingTitle = ['Ohana adalah cinta.', 'Ohana adalah keluarga.']
 
   return (
     <section
@@ -79,10 +79,10 @@ export default function ClosingSection() {
 
         {/* Ohana Sunset Image */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 15 }}
+          animate={isInView ? { opacity: 1, y: -5 } : { opacity: 0, y: 15 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="pt-8 max-w-4xl mx-auto px-4"
+          className="pt-4 max-w-4xl mx-auto px-4"
         >
           <img
             src="/ohana-sunset.png"
