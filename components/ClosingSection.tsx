@@ -1,6 +1,6 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
+import { motion, useInView, Variants } from 'framer-motion'
 import { useRef, useEffect } from 'react'
 import gsap from 'gsap'
 
@@ -46,7 +46,8 @@ export default function ClosingSection() {
 
   const closingText = `Saat matahari terbenam dan langit berubah warna, saat angin membawa kehangatan, saat keluarga berkumpul di sekitar meja — itulah saatnya Ohana. Rasa yoghurt yang lembut, creamy, dan dibuat dengan cinta. Rasa yang membawa Anda kembali ke rumah, setiap kali.`
 
-  
+  const closingTitle = ['Ohana adalah cinta.', 'Ohana adalah keluarga.', 'Ohana adalah rumah.']
+
 
   return (
     <section
@@ -74,8 +75,20 @@ export default function ClosingSection() {
           transition={{ duration: 0.8 }}
           className="text-lg sm:text-xl md:text-2xl lg:text-3xl oh-body mb-8 sm:mb-12 font-light leading-normal sm:leading-relaxed sun-haze"
         >
-          {closingText}
-        </motion.p>
+         </motion.p>
+        <div className="space-y-3 sm:space-y-4 mb-8 sm:mb-12">
+          {closingTitle.map((line, idx) => (
+            <motion.h2
+              key={idx}
+              initial={{ opacity: 0, y: 10 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+              transition={{ duration: 0.6, delay: idx * 0.2 }}
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold oh-head sun-highlight"
+            >
+              {line}
+            </motion.h2>
+          ))}
+        </div>
 
         {/* Ohana Sunset Image */}
         <motion.div
@@ -92,33 +105,6 @@ export default function ClosingSection() {
             className="w-full h-auto rounded-2xl shadow-lg"
           />
         </motion.div>
-
-        <div className="space-y-3 sm:space-y-4 mb-8 sm:mb-12">
-            <motion.h2
-              initial={{ opacity: 0, y: 10 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold oh-head sun-highlight"
-            >
-              Ohana adalah cinta.
-            </h2>
-            <h2
-              initial={{ opacity: 0, y: 10 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold oh-head sun-highlight"
-            >
-              Ohana adalah keluarga.
-            </h2>
-            <h2
-              initial={{ opacity: 0, y: 10 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold oh-head sun-highlight"
-            >
-              Ohana adalah rumah.
-            </h2>
-        </div>
 
         <motion.button
           ref={buttonRef}
