@@ -117,7 +117,7 @@ export default function Footer() {
             <div className="max-w-4xl mx-auto px-4">
               <Image
                 src="/ohana-sunset.png"
-                alt="Ohana adalah cinta. Ohana adalah keluarga."
+                alt="Ohana sunset with family gathering"
                 width={800}
                 height={400}
                 className="w-full h-auto rounded-2xl shadow-lg"
