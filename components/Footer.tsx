@@ -107,24 +107,7 @@ export default function Footer() {
             </p>
           </motion.div>
 
-          {/* Ohana Sunset Image Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="pt-8 border-t border-orange-200/30 w-full"
-          >
-            <div className="max-w-4xl mx-auto px-4">
-              <Image
-                src="/ohana-sunset.png"
-                alt="Ohana sunset with family gathering"
-                width={800}
-                height={400}
-                className="w-full h-auto rounded-2xl shadow-lg"
-                priority
-              />
-            </div>
-          </motion.div>
+
         </div>
       </div>
     </footer>

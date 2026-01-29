@@ -77,6 +77,22 @@ export default function ClosingSection() {
           {closingText}
         </motion.p>
 
+        {/* Ohana Sunset Image */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="pt-8 max-w-4xl mx-auto px-4"
+        >
+          <img
+            src="/ohana-sunset.png"
+            alt="Ohana sunset with family gathering"
+            width={800}
+            height={400}
+            className="w-full h-auto rounded-2xl shadow-lg"
+          />
+        </motion.div>
+
         <div className="space-y-3 sm:space-y-4 mb-8 sm:mb-12">
           {closingTitle.map((line, idx) => (
             <motion.h2
