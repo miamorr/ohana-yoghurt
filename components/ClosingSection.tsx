@@ -46,8 +46,6 @@ export default function ClosingSection() {
 
   const closingText = `Saat matahari terbenam dan langit berubah warna, saat angin membawa kehangatan, saat keluarga berkumpul di sekitar meja — itulah saatnya Ohana. Rasa yoghurt yang lembut, creamy, dan dibuat dengan cinta. Rasa yang membawa Anda kembali ke rumah, setiap kali.`
 
-  const closingTitle = ['Ohana adalah cinta.', 'Ohana adalah keluarga.', 'Ohana adalah rumah.']
-
 
   return (
     <section
@@ -75,20 +73,8 @@ export default function ClosingSection() {
           transition={{ duration: 0.8 }}
           className="text-lg sm:text-xl md:text-2xl lg:text-3xl oh-body mb-8 sm:mb-12 font-light leading-normal sm:leading-relaxed sun-haze"
         >
-         </motion.p>
-        <div className="space-y-3 sm:space-y-4 mb-8 sm:mb-12">
-          {closingTitle.map((line, idx) => (
-            <motion.h2
-              key={idx}
-              initial={{ opacity: 0, y: 10 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-              transition={{ duration: 0.6, delay: idx * 0.2 }}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold oh-head sun-highlight"
-            >
-              {line}
-            </motion.h2>
-          ))}
-        </div>
+          {closingText}
+        </motion.p>
 
         {/* Ohana Sunset Image */}
         <motion.div
@@ -120,7 +106,7 @@ export default function ClosingSection() {
           transition={{
             y: { duration: 3, repeat: Infinity, ease: 'easeInOut' },
           }}
-          className="w-full sm:w-auto px-8 sm:px-12 py-3 sm:py-5 rounded-full btn-sunset font-bold text-base sm:text-xl shadow-2xl min-h-[44px]"
+          className="w-full sm:w-auto px-8 sm:px-12 py-3 sm:py-5 rounded-full btn-sunset font-bold text-base sm:text-xl shadow-2xl min-h-[44px] mt-8 sm:mt-12"
         >
           Pesan Sekarang
         </motion.button>
