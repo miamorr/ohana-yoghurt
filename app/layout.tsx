@@ -4,6 +4,11 @@ import './globals.css'
 export const metadata: Metadata = {
   title: 'Ohana — Taste the Warmth of Home',
   description: 'Premium homemade yogurt made with family love. Experience OhanaLand.',
+  icons: {
+    icon: '/ohana-logo.png',
+    shortcut: '/ohana-logo.png',
+    apple: '/ohana-logo.png',
+  },
   openGraph: {
     title: 'Ohana — Taste the Warmth of Home',
     description: 'Premium homemade yogurt made with family love.',
