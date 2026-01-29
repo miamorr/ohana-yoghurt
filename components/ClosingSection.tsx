@@ -44,9 +44,9 @@ export default function ClosingSection() {
     }
   }, [])
 
-  const closingText = ''
+  const closingText = `Saat matahari terbenam dan langit berubah warna, saat angin membawa kehangatan, saat keluarga berkumpul di sekitar meja — itulah saatnya Ohana. Rasa yoghurt yang lembut, creamy, dan dibuat dengan cinta. Rasa yang membawa Anda kembali ke rumah, setiap kali.`
 
-
+  const closingTitle = ['Ohana adalah cinta.', 'Ohana adalah keluarga.']
 
   return (
     <section
@@ -93,31 +93,18 @@ export default function ClosingSection() {
           />
         </motion.div>
 
-          <div className="space-y-3 sm:space-y-4 mb-8 sm:mb-12">
+        <div className="space-y-3 sm:space-y-4 mb-8 sm:mb-12">
+          {closingTitle.map((line, idx) => (
             <motion.h2
+              key={idx}
               initial={{ opacity: 0, y: 10 }}
               animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+              transition={{ duration: 0.6, delay: idx * 0.2 }}
               className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold oh-head sun-highlight"
             >
-              Ohana adalah cinta.
+              {line}
             </motion.h2>
-            <motion.h2
-              initial={{ opacity: 0, y: 10 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold oh-head sun-highlight"
-            >
-              Ohana adalah keluarga.
-            </motion.h2>
-            <motion.h2
-              initial={{ opacity: 0, y: 10 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold oh-head sun-highlight"
-            >
-              Ohana adalah rumah.
-            </motion.h2>
+          ))}
         </div>
 
         <motion.button
