@@ -8,7 +8,7 @@ export default function StorySection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: false, amount: 0.3 })
 
-  const storyText = `Ohana berarti keluarga — tempat di mana cinta abadi berkembang. Kami membuat setiap batch dengan tangan, dengan hati, dan dengan janji untuk memberikan yang terbaik bagi keluarga Anda.
+  const storyText = `Ohana berarti keluarga — tempat di mana cinta abadi berkembang. Kami tidak menghasilkan yoghurt dalam jumlah besar. Kami membuat setiap batch dengan tangan, dengan hati, dan dengan janji untuk memberikan yang terbaik bagi keluarga Anda.
 
 Di sore hari, ketika matahari mulai memudar dan angin menjadi lembut, itulah waktu Ohana. Waktu untuk bersantai. Waktu untuk bersama orang-orang terkasih. Waktu untuk merasakan yoghurt yang hangat, lembut, dan dibuat dengan cinta.
 
