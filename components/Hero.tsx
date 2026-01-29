@@ -100,7 +100,7 @@ export default function Hero() {
           <motion.button
             onClick={() => {
               document
-                .querySelector('#cerita')
+                .querySelector('#story')
                 ?.scrollIntoView({ behavior: 'smooth' })
             }}
             whileHover={{ scale: 1.02 }}
