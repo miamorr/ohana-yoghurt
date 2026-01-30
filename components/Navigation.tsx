@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
+import { Button } from '@/components/ui/button'
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -11,7 +12,7 @@ export default function Navigation() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      setIsScrolled(window.scrollY > 20)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -54,57 +55,71 @@ export default function Navigation() {
         initial={{ backgroundColor: 'rgba(255, 248, 240, 0)' }}
         animate={{
           backgroundColor: isScrolled
-            ? 'rgba(255, 248, 240, 0.95)'
+            ? 'rgba(255, 248, 240, 0.98)'
             : 'rgba(255, 248, 240, 0)',
         }}
         transition={{ duration: 0.3 }}
-        className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md border-b border-orange-200/20"
+        className="fixed top-0 left-0 right-0 z-[100] backdrop-blur-md border-b border-orange-200/20"
         style={{
           paddingTop: 'max(0.25rem, env(safe-area-inset-top))',
           paddingLeft: 'max(1rem, env(safe-area-inset-left))',
           paddingRight: 'max(1rem, env(safe-area-inset-right))',
         }}
       >
-        <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
+        <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center relative">
           {/* Logo */}
-          <Link href="/" className="flex-shrink-0">
+          <Link
+            href="/"
+            className="flex-shrink-0 relative z-[110] block hover:opacity-80 transition-opacity"
+            onClick={(e) => {
+              if (window.location.pathname === '/') {
+                e.preventDefault()
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }
+            }}
+          >
             <Image
               src="/ohana-logo.png"
               alt="Ohana Logo"
               width={220}
               height={88}
-              className="h-8 lg:h-10 w-auto max-w-[80px] lg:max-w-[110px]"
+              className="h-8 lg:h-12 w-auto max-w-[80px] lg:max-w-[120px]"
               priority
             />
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex gap-8 items-center">
+          <div className="hidden lg:flex gap-8 items-center relative z-[110]">
             {navItems.map((item) => (
               <button
                 key={item.label}
                 onClick={() => scrollToSection(item.href)}
-                className="text-sm font-medium nav-link hover:text-[var(--highlight-start)] transition-colors"
+                className="text-sm font-medium nav-link hover:text-[var(--highlight-start)] transition-colors cursor-pointer"
               >
                 {item.label}
               </button>
             ))}
-            <button
+            <Button
               onClick={handleWhatsAppClick}
-              className="px-5 py-2 rounded-lg btn-sunset font-medium text-sm min-h-[40px] flex items-center"
+              className="px-6 py-2 rounded-full btn-sunset font-semibold text-sm h-auto flex items-center border-none shadow-md hover:shadow-lg transition-all"
             >
               Order via WhatsApp
-            </button>
+            </Button>
           </div>
 
           {/* Mobile Hamburger Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden flex items-center justify-center w-10 h-10"
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsMobileMenuOpen(!isMobileMenuOpen);
+            }}
+            className="lg:hidden relative z-[110] w-12 h-12 flex items-center justify-center rounded-full hover:bg-orange-100/50"
             aria-label="Toggle menu"
           >
             <svg
-              className="w-6 h-6"
+              className="w-7 h-7 text-orange-900"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -112,11 +127,11 @@ export default function Navigation() {
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeWidth={2}
+                strokeWidth={2.5}
                 d={isMobileMenuOpen ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
               />
             </svg>
-          </button>
+          </Button>
         </div>
       </motion.nav>
 
@@ -130,7 +145,7 @@ export default function Navigation() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsMobileMenuOpen(false)}
-              className="fixed inset-0 bg-black/20 z-40 lg:hidden"
+              className="fixed inset-0 bg-black/40 z-[120] lg:hidden backdrop-blur-sm"
             />
 
             {/* Menu */}
@@ -138,55 +153,65 @@ export default function Navigation() {
               initial={{ y: '-100%' }}
               animate={{ y: 0 }}
               exit={{ y: '-100%' }}
-              transition={{ duration: 0.3 }}
-              className="fixed left-0 right-0 top-0 w-full bg-gradient-to-b from-orange-300/80 via-orange-200/70 to-rose-100/60 z-50 flex flex-col border-b border-orange-300/40 shadow-lg backdrop-blur-sm"
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+              className="fixed inset-x-0 top-0 w-full bg-gradient-to-b from-orange-300/95 via-orange-200/95 to-rose-100/95 z-[130] flex flex-col shadow-2xl lg:hidden backdrop-blur-md"
               style={{
                 paddingTop: 'env(safe-area-inset-top)',
-                maxHeight: 'min(70vh, auto)',
+                maxHeight: '85vh',
                 overflow: 'auto',
               }}
             >
-              {/* Close Button Header */}
-              <div className="flex justify-between items-center px-6 py-4 border-b border-orange-300/30">
-                <Image
-                  src="/ohana-logo.png"
-                  alt="Ohana Logo"
-                  width={220}
-                  height={88}
-                  className="h-8 w-auto max-w-[100px]"
-                />
-                <button
+              {/* Menu Header */}
+              <div className="flex justify-between items-center px-6 py-6 border-b border-orange-200/30">
+                <Link
+                  href="/"
+                  className="block"
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="p-1 hover:bg-white/30 rounded transition-colors"
+                >
+                  <Image
+                    src="/ohana-logo.png"
+                    alt="Ohana Logo"
+                    width={220}
+                    height={88}
+                    className="h-10 w-auto max-w-[120px]"
+                  />
+                </Link>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="rounded-full hover:bg-white/30"
                   aria-label="Close menu"
                 >
                   <svg className="w-6 h-6 text-orange-950" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M6 18L18 6M6 6l12 12" />
                   </svg>
-                </button>
+                </Button>
               </div>
 
-{/* Menu Items */}
-              <nav className="px-6 py-2 space-y-0">
-                {navItems.map((item) => (
-                  <button
-                    key={item.label}
-                    onClick={() => scrollToSection(item.href)}
-                    className="block w-full text-left text-base font-medium nav-link hover:text-orange-950 transition-colors py-1 px-2 rounded hover:bg-white/40 text-orange-900"
-                  >
-                    {item.label}
-                  </button>
-                ))}
+              {/* Menu Items Stacking Tidy */}
+              <nav className="px-6 py-4">
+                <div className="flex flex-col gap-0 items-center">
+                  {navItems.map((item) => (
+                    <button
+                      key={item.label}
+                      onClick={() => scrollToSection(item.href)}
+                      className="w-full text-center text-lg font-medium text-orange-950 py-2.5 px-4 rounded-lg hover:bg-white/20 transition-all duration-200"
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
               </nav>
 
-              {/* CTA */}
-              <div className="px-6 py-4 border-t border-orange-300/30">
-                <button
+              {/* CTA Footer */}
+              <div className="px-6 pb-12 pt-4">
+                <Button
                   onClick={handleWhatsAppClick}
-                  className="w-full px-4 py-3 rounded-lg btn-sunset font-semibold text-sm"
+                  className="w-full py-6 text-lg rounded-2xl btn-sunset font-bold border-none shadow-xl h-auto"
                 >
                   Order via WhatsApp
-                </button>
+                </Button>
               </div>
             </motion.div>
           </>

@@ -1,51 +1,14 @@
 'use client'
 
-import { motion, useInView, Variants } from 'framer-motion'
-import { useRef, useEffect } from 'react'
-import gsap from 'gsap'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
+import { Button } from '@/components/ui/button'
 
 export default function ClosingSection() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: false, amount: 0.3 })
-  const buttonRef = useRef<HTMLButtonElement>(null)
-
-  useEffect(() => {
-    if (!buttonRef.current) return
-
-    const button = buttonRef.current
-
-    const handleMouseMove = (e: MouseEvent) => {
-      const rect = button.getBoundingClientRect()
-      const x = e.clientX - rect.left - rect.width / 2
-      const y = e.clientY - rect.top - rect.height / 2
-
-      gsap.to(button, {
-        x: x * 0.2,
-        y: y * 0.2,
-        duration: 0.3,
-        overwrite: 'auto',
-      })
-    }
-
-    const handleMouseLeave = () => {
-      gsap.to(button, {
-        x: 0,
-        y: 0,
-        duration: 0.3,
-      })
-    }
-
-    button.addEventListener('mousemove', handleMouseMove)
-    button.addEventListener('mouseleave', handleMouseLeave)
-
-    return () => {
-      button.removeEventListener('mousemove', handleMouseMove)
-      button.removeEventListener('mouseleave', handleMouseLeave)
-    }
-  }, [])
 
   const closingText = `Saat matahari terbenam dan langit berubah warna, saat angin membawa kehangatan, saat keluarga berkumpul di sekitar meja — itulah saatnya Ohana. Rasa yoghurt yang lembut, creamy, dan dibuat dengan cinta. Rasa yang membawa Anda kembali ke rumah, setiap kali.`
-
 
   return (
     <section
@@ -92,12 +55,9 @@ export default function ClosingSection() {
           />
         </motion.div>
 
-        <motion.button
-          ref={buttonRef}
-          onClick={() => window.open('https://wa.me/6282125156872', '_blank')}
+        <motion.div
           whileHover={{
             scale: 1.05,
-            boxShadow: '0 14px 40px rgba(251,113,133,0.45)',
           }}
           whileTap={{ scale: 0.98 }}
           animate={{
@@ -106,10 +66,15 @@ export default function ClosingSection() {
           transition={{
             y: { duration: 3, repeat: Infinity, ease: 'easeInOut' },
           }}
-          className="w-full sm:w-auto px-8 sm:px-12 py-3 sm:py-5 rounded-full btn-sunset font-bold text-base sm:text-xl shadow-2xl min-h-[44px] mt-8 sm:mt-12"
+          className="mt-8 sm:mt-12"
         >
-          Pesan Sekarang
-        </motion.button>
+          <Button
+            onClick={() => window.open('https://wa.me/6282125156872', '_blank')}
+            className="w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-8 rounded-full btn-sunset font-bold text-base sm:text-xl shadow-2xl h-auto border-none"
+          >
+            Pesan Sekarang
+          </Button>
+        </motion.div>
       </div>
     </section>
   )

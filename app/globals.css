@@ -72,3 +72,79 @@ html.lenis body {
     @apply bg-[#fffbf5];
   }
 }
+
+/* Sunset Background Animation */
+@keyframes sunset-shift {
+  0% {
+    --hue1: 10deg;
+    --hue2: 35deg;
+    --hue3: 55deg;
+    --hue4: 80deg;
+  }
+  25% {
+    --hue1: 25deg;
+    --hue2: 45deg;
+    --hue3: 65deg;
+    --hue4: 95deg;
+  }
+  50% {
+    --hue1: 40deg;
+    --hue2: 65deg;
+    --hue3: 85deg;
+    --hue4: 110deg;
+  }
+  75% {
+    --hue1: 20deg;
+    --hue2: 50deg;
+    --hue3: 70deg;
+    --hue4: 90deg;
+  }
+  100% {
+    --hue1: 10deg;
+    --hue2: 35deg;
+    --hue3: 55deg;
+    --hue4: 80deg;
+  }
+}
+
+@keyframes wave-motion {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+}
+
+@property --hue1 {
+  syntax: '<angle>';
+  initial-value: 10deg;
+  inherits: false;
+}
+@property --hue2 {
+  syntax: '<angle>';
+  initial-value: 35deg;
+  inherits: false;
+}
+@property --hue3 {
+  syntax: '<angle>';
+  initial-value: 55deg;
+  inherits: false;
+}
+@property --hue4 {
+  syntax: '<angle>';
+  initial-value: 80deg;
+  inherits: false;
+}
+
+.animate-sunset {
+  background: linear-gradient(
+    to bottom,
+    hsl(var(--hue1), 100%, 65%),
+    hsl(var(--hue2), 100%, 70%) 25%,
+    hsl(var(--hue3), 100%, 70%) 50%,
+    hsl(var(--hue4), 70%, 75%) 75%,
+    hsl(280, 50%, 85%) 100%
+  );
+  animation: sunset-shift 20s ease-in-out infinite;
+}
+
+.sunset-wave {
+  animation: wave-motion 8s ease-in-out infinite;
+}

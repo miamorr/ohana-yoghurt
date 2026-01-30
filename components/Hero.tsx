@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
 import AnimatedSunset from './AnimatedSunset'
+import { Button } from '@/components/ui/button'
 
 export default function Hero() {
   const ref = useRef(null)
@@ -14,10 +15,10 @@ export default function Hero() {
     const checkScreenSize = () => {
       setIsDesktop(window.innerWidth >= 768)
     }
-    
+
     checkScreenSize()
     window.addEventListener('resize', checkScreenSize)
-    
+
     return () => window.removeEventListener('resize', checkScreenSize)
   }, [])
 
@@ -55,7 +56,7 @@ export default function Hero() {
         }}
       />
 
-<motion.div
+      <motion.div
         style={{ y: isDesktop ? y : 0 }}
         className="relative z-10 text-center max-w-2xl px-6"
       >
@@ -97,27 +98,28 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="flex gap-3 sm:gap-4 justify-center flex-wrap sm:flex-nowrap w-full max-w-2xl"
         >
-          <motion.button
-            onClick={() => {
-              document
-                .querySelector('#story')
-                ?.scrollIntoView({ behavior: 'smooth' })
-            }}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full sm:w-auto px-4 sm:px-8 py-3 sm:py-4 rounded-full border-2 border-[var(--highlight-start)] text-[var(--highlight-start)] font-bold text-sm sm:text-lg hover:bg-[rgba(245,158,11,0.06)] transition-colors sun-haze min-h-[44px] flex items-center justify-center"
-          >
-            Explore OhanaLand
-          </motion.button>
+          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full sm:w-auto">
+            <Button
+              variant="outline"
+              onClick={() => {
+                document
+                  .querySelector('#story')
+                  ?.scrollIntoView({ behavior: 'smooth' })
+              }}
+              className="w-full px-4 sm:px-8 py-3 sm:py-6 rounded-full border-2 border-[var(--highlight-start)] text-[var(--highlight-start)] font-bold text-sm sm:text-lg hover:bg-[rgba(245,158,11,0.06)] transition-colors sun-haze h-auto border-orange-400"
+            >
+              Explore OhanaLand
+            </Button>
+          </motion.div>
 
-          <motion.button
-            onClick={() => window.open('https://wa.me/6282125156872', '_blank')}
-            whileHover={{ scale: 1.02, boxShadow: '0 14px 40px rgba(251,113,133,0.45)' }}
-            whileTap={{ scale: 0.98 }}
-            className="w-full sm:w-auto px-4 sm:px-8 py-3 sm:py-4 rounded-full btn-sunset font-bold text-sm sm:text-lg min-h-[44px] flex items-center justify-center whitespace-nowrap"
-          >
-            Order via WhatsApp
-          </motion.button>
+          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full sm:w-auto">
+            <Button
+              onClick={() => window.open('https://wa.me/6282125156872', '_blank')}
+              className="w-full px-4 sm:px-8 py-3 sm:py-6 rounded-full btn-sunset font-bold text-sm sm:text-lg h-auto whitespace-nowrap border-none"
+            >
+              Order via WhatsApp
+            </Button>
+          </motion.div>
         </motion.div>
       </motion.div>
 
